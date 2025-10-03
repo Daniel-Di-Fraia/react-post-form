@@ -31,7 +31,7 @@ const FormBlog = () => {
         axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formData)
             .then(res => {
                 console.log("dati inviati", res.data);
-                alert("Richiesta per post suk blog inviata!");
+                alert("Richiesta per post sul blog inviata!");
             })
             .catch(error => {
                 console.log(error);
