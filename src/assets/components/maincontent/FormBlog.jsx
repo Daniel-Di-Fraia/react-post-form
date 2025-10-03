@@ -17,6 +17,7 @@ const FormBlog = () => {
 
         const { name, value, type, checked } = e.target;
 
+        //condizione se checkbox true o false (post pubblico o meno)
         if (type === "checkbox") {
             setFormData({ ...formData, [name]: checked });
         } else {
@@ -24,27 +25,28 @@ const FormBlog = () => {
         }
     };
 
-    // funzione di invio del form (post)
+    // funzione di invio del form (post) + alert a richiesta inviata con successo o meno
     function handleSubmit(e) {
         e.preventDefault();
         axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formData)
-            .then(res => { 
+            .then(res => {
                 console.log("dati inviati", res.data);
                 alert("Richiesta per post suk blog inviata!");
             })
             .catch(error => {
                 console.log(error);
                 alert("Si è verificato un errore nella richiesta")
-    });
-}
+            });
+    }
     return (
         <>
             <div className="container mt-4">
                 <h2>Richiesta post su blog</h2>
+                {/* form pagina */}
                 <form
                     onSubmit={handleSubmit}
                     className="p-4 border rounded bg-light">
-                    {/* Nome */}
+                    {/* Nome autore*/}
                     <div className="mb-3">
                         <label className="form-label">Nome Autore</label>
                         <input
@@ -57,7 +59,7 @@ const FormBlog = () => {
                         />
                     </div>
 
-                    {/* titolo */}
+                    {/* titolo post*/}
                     <div className="mb-3">
                         <label className="form-label">Titolo del post</label>
                         <input
@@ -95,7 +97,7 @@ const FormBlog = () => {
                         <label className="form-check-label" htmlFor="updates">Pubblico o bozza?</label>
                     </div>
 
-                    {/* Pulsante di invio */}
+                    {/* Pulsante di invio richiesta*/}
                     <button type="submit" className="btn btn-primary">Invia richiesta di post</button>
                 </form>
             </div>
